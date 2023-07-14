@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Created CHANGELOG.md
 - Adjusted README.md
 - Create routes 
+- Create middlewares error 500
 
 
 ### Fixed
