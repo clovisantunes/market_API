@@ -1,7 +1,6 @@
-<<<<<<< HEAD
-# Meme Battle - WEB
+# SallesCar - WEB
 
-## Prerequisites
+## Pre-requisites
 
 Make sure you have the following prerequisites installed on your system:
 
@@ -23,6 +22,3 @@ To run the project, follow the steps below:
 2. Open a web browser and go to: `http://localhost:3000`.
 
 
-=======
-# Backend de um projeto de um sistema Full Stack, para um sistema de uma revenda.
->>>>>>> 5274efd0feb39f3a88cdd3217b67e2a0a85ea915
