@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Created the Project
+- Created CHANGELOG.md
+- Adjusted README.md
 - Create routes 
 
 
