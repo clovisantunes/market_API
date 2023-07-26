@@ -6,20 +6,85 @@
 generator client {
   provider = "pris-client-js"
 }
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-
 // yarn prisma migrate dev
 model User {
-  id String @id @default(uuid())
-  name String
-  email String
-  password String
+  id         String    @id @default(uuid())
+  name       String
+  email      String
+  password   String
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
 
   @@map("users")
+}
+
+model UserClient {
+  id         String    @id @default(uuid())
+  name       String
+  email      String
+  password   String
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  @@map("usersClient")
+}
+
+model Category {
+  id         String    @id @default(uuid())
+  name       String
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+  veicules   Veicule[]
+
+  @@map("categories")
+}
+
+model Veicule {
+  id          String    @id @default(uuid())
+  name        String
+  price       String
+  description String
+  banner      String
+  created_at  DateTime? @default(now())
+  updated_at  DateTime? @default(now())
+
+  category    Category @relation(fields: [category_id], references: [id])
+  category_id String
+  items Item[]
+
+  @@map("veicules")
+}
+
+model Order {
+  id         String    @id @default(uuid())
+  status     Boolean   @default(false)
+  draft      Boolean   @default(true)
+  name       String
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+  items      Item[]
+
+  @@map("orders")
+}
+
+model Item {
+  id     String @id @default(uuid())
+  amount Int
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  order    Order  @relation(fields: [order_id], references: [id])
+  veicule   Veicule  @relation(fields: [veicule_id], references: [id])
+  
+
+  @@map("items")
+  order_id String
+  veicule_id String
 }
