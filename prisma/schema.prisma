@@ -18,6 +18,8 @@ model User {
   name       String
   email      String
   password   String
+  contact    String
+  local      String
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
 
@@ -48,9 +50,16 @@ model Category {
 model Veicule {
   id          String    @id @default(uuid())
   name        String
+  model       String
   price       String
   description String
+  km          String
+  march       String
+  year        String
+  color       String
+  city        String
   banner      String
+ 
   created_at  DateTime? @default(now())
   updated_at  DateTime? @default(now())
 
