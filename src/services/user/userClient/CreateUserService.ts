@@ -1,5 +1,6 @@
-import { UserExist } from "../../hooks/UserExists";
-import prismaClient from "../../prisma";
+import { hash } from "bcryptjs";
+import { UserExist } from "../../../hooks/UserExists";
+import prismaClient from "../../../prisma";
 
 
 interface userClientRequest{
@@ -12,15 +13,22 @@ class CreateUserService{
     async execute({name, email, password}: userClientRequest){
         await UserExist({ email });
 
+        const passwordHash = await hash(password, 8)
         const userClient = await  prismaClient.userClient.create({
             data:{
                 name: name,
                 email: email,
-                password: password
+                password: passwordHash
+            },
+            select:{
+                id:true,
+                name:true,
+                email:true
             }
+
         })
 
-        return { name: name}
+        return userClient;
     }
 }
 
