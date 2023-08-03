@@ -1,3 +1,4 @@
+import { UserExist } from "../../hooks/UserExists";
 import prismaClient from "../../prisma";
 
 
@@ -9,21 +10,9 @@ interface userClientRequest{
 
 class CreateUserService{
     async execute({name, email, password}: userClientRequest){
+        await UserExist({ email });
 
-        if(!email){
-            throw new Error("Email incorrect")
-        }
-
-        const userAlreadyExists = await prismaClient.user.findFirst({
-            where:{
-                email: email
-            }
-        })
-        if(userAlreadyExists){
-            throw new Error("User already exists")
-        }
-
-        const user = await  prismaClient.userClient.create({
+        const userClient = await  prismaClient.userClient.create({
             data:{
                 name: name,
                 email: email,

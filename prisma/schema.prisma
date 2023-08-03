@@ -13,7 +13,7 @@ datasource db {
 }
 
 // yarn prisma migrate dev
-model User {
+model UserAdmin {
   id         String    @id @default(uuid())
   name       String
   email      String
