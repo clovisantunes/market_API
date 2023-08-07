@@ -4,6 +4,8 @@ import { CreateUserAdminController } from './controllers/user/CreateUserControll
 import { AuthUserController } from './controllers/user/AuthUserController';
 import { DetailUserController } from './controllers/user/DetailUserController';
 import { isAuthenticated } from './middlewares/isAuthenticated';
+import { CreateCategoryController } from './controllers/category/CreateCategoryController';
+import { ListCategoryController } from './controllers/category/ListCategoryController';
 const router = Router();
 // Routes users/client
 
@@ -12,4 +14,9 @@ router.post('/user', new CreateUserAdminController().handle)
 router.post('/session', new AuthUserController().handle)
 // Routes user Information
 router.get('/me', isAuthenticated, new DetailUserController().handle)
+
+// Routes category
+router.post('/category', isAuthenticated, new CreateCategoryController().handle)
+router.get('/category', new ListCategoryController().handle)
+
 export { router };
