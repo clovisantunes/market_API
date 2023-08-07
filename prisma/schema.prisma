@@ -13,28 +13,18 @@ datasource db {
 }
 
 // yarn prisma migrate dev
-model UserAdmin {
+model Users {
   id         String    @id @default(uuid())
   name       String
   email      String
   password   String
   contact    String
   local      String
+  admin      Boolean @default(false)
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
 
   @@map("users")
-}
-
-model UserClient {
-  id         String    @id @default(uuid())
-  name       String
-  email      String
-  password   String
-  created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
-
-  @@map("usersClient")
 }
 
 model Category {

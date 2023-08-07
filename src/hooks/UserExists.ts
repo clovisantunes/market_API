@@ -8,17 +8,13 @@ async function UserExist({email}: userEmail){
     if(!email){
         throw new Error("Email incorrect")
     }
-    const userAlreadyExists = await prismaClient.userClient.findFirst({
+    const userAlreadyExists = await prismaClient.userAdmin.findFirst({
         where:{
             email: email
         }
     })
-    const userAdminAlreadyExists = await prismaClient.userAdmin.findFirst({
-        where:{
-            email: email
-        }
-    })
-    if(userAlreadyExists|| userAdminAlreadyExists){
+
+    if(userAlreadyExists ){
         throw new Error("User already exists")
     }
 }

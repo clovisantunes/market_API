@@ -1,20 +1,21 @@
 import { Request, Response } from "express";
-import { CreateUserAdminService } from "../../../services/user/userAdmin/CreateUserAdminService";
+import { CreateUserAdminService } from "../../services/user/CreateUserService";
 
 class CreateUserAdminController{
     async handle(req: Request, res: Response){
-        const {name, email, password, contact, local} = req.body
+        const {name, email, password, contact, local, admin} = req.body
 
         const createUserAdminService= new CreateUserAdminService()
 
-        const userAdmin = await createUserAdminService.execute({
+        const user = await createUserAdminService.execute({
             name,
             email,
             password,
             contact,
-            local
+            local,
+            admin
         });
-        return res.json(userAdmin)
+        return res.json(user)
     }
 }
 

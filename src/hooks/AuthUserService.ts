@@ -9,19 +9,14 @@ interface AuthRequest {
 
 class AuthUserService {
     async execute({ email, password }: AuthRequest) {
-        const userClient = await prismaClient.userClient.findFirst({
+       
+        const userItem = await prismaClient.userAdmin.findFirst({
             where: {
                 email: email
             }
         });
 
-        const userAdmin = await prismaClient.userAdmin.findFirst({
-            where: {
-                email: email
-            }
-        });
-
-        const user = userClient || userAdmin;
+        const user =  userItem;
 
         if (!user) {
             throw new Error("Usuário/senha incorretos");
@@ -50,6 +45,9 @@ class AuthUserService {
             id: user.id,
             name: user.name,
             email: user.email,
+            local: user.local,
+            contato: user.contact,
+            admin: user.admin,
             token: token
          };
     }
