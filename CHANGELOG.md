@@ -31,7 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Created veicule Routes
 - Added Multer
 - configured banner upload
-- configured cadaster of veicules
+- configured cadaster of vehicles
 
 ### Fixed
 
