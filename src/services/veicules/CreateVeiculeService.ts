@@ -28,7 +28,23 @@ class CreateVeiculeService {
     banner,
     category_id
   }) {
-    return { ok: true}
+
+    const veicule = await prismaClient.veicule.create({
+        data:{
+            name: name,
+            model: model,
+            price: price,
+            description: description,
+            km: km,
+            march: march,
+            year: year,
+            color: color,
+            city: city,
+            banner: banner,
+            category_id: category_id
+        }
+    })
+    return veicule
   }
 }
 

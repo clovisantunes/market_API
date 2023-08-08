@@ -21,8 +21,8 @@ class CreateVeiculeController {
         throw new Error("Error upload file")
     }else{
 
-        const {originalname, filename } = req.file;
-        console.log(filename)
+        const {originalname, filename: banner } = req.file;
+        
         const veicule = await createVeiculeService.execute({
           name,
           model,
@@ -33,7 +33,7 @@ class CreateVeiculeController {
           year,
           color,
           city,
-          banner: "",
+          banner,
           category_id,
         });
         return res.json(veicule)
