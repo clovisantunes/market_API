@@ -15,23 +15,30 @@ class CreateVeiculeController {
       city,
       category_id,
     } = req.body;
-    let banner = "";
-    const createVeiculeService = new CreateVeiculeService();
 
-    const veicule = await createVeiculeService.execute({
-      name,
-      model,
-      price,
-      description,
-      km,
-      march,
-      year,
-      color,
-      city,
-      banner,
-      category_id,
-    });
-    return res.json(veicule)
+    const createVeiculeService = new CreateVeiculeService();
+    if(!req.file){
+        throw new Error("Error upload file")
+    }else{
+
+        const {originalname, filename } = req.file;
+        console.log(filename)
+        const veicule = await createVeiculeService.execute({
+          name,
+          model,
+          price,
+          description,
+          km,
+          march,
+          year,
+          color,
+          city,
+          banner: "",
+          category_id,
+        });
+        return res.json(veicule)
+        
+    }
   }
 }
 
