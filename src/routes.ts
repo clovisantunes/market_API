@@ -9,6 +9,8 @@ import { CreateCategoryController } from './controllers/category/CreateCategoryC
 import { ListCategoryController } from './controllers/category/ListCategoryController';
 import { CreateVeiculeController } from './controllers/veicule/CreateVeiculeController';
 import uploadConfig from './config/multer';
+import { ListByCategoryController } from './controllers/veicule/ListByCategoryController';
+import { CreateOrderController } from './controllers/order/CreateOrderController';
 
 const router = Router();
 
@@ -27,6 +29,10 @@ router.get('/category', new ListCategoryController().handle)
 
 // Routes products
 router.post('/veicule', isAuthenticated, upload.single("file"), new CreateVeiculeController().handle)
+router.get('/veicule/list', new ListByCategoryController().handle)
 
+// Routes Order
+
+router.post('/order', isAuthenticated, new CreateOrderController().handle)
 
 export { router };

@@ -1,5 +1,5 @@
 import { hash } from "bcryptjs";
-import { UserExist } from "../../hooks/UserExists";
+import { userExists } from "../../hooks/UserExists";
 import prismaClient from "../../prisma";
 
 interface userAdminRequest{
@@ -12,9 +12,14 @@ interface userAdminRequest{
 }
 class CreateUserAdminService{
     async execute({name, email, password, contact, local, admin}: userAdminRequest){
-        await UserExist({ email });
+        const exists = await userExists(email);
+
+        if (exists) {
+          throw new Error("User already exists");
+        }
+    
         const passwordHash = await hash(password, 8)
-        const userAdmin = await prismaClient.userAdmin.create({
+        const userAdmin = await prismaClient.users.create({
             data:{
                 name: name,
                 email: email,

@@ -1,22 +1,17 @@
-import prismaClient from "../prisma"
+import prismaClient from "../prisma";
 
-type userEmail ={
-    email:string
+async function userExists(email: string): Promise<boolean> {
+  if (!email) {
+    throw new Error("Email incorrect");
+  }
+
+  const existingUser = await prismaClient.users.findFirst({
+    where: {
+      email: email,
+    },
+  });
+
+  return !!existingUser;
 }
 
-async function UserExist({email}: userEmail){
-    if(!email){
-        throw new Error("Email incorrect")
-    }
-    const userAlreadyExists = await prismaClient.userAdmin.findFirst({
-        where:{
-            email: email
-        }
-    })
-
-    if(userAlreadyExists ){
-        throw new Error("User already exists")
-    }
-}
-
-export {UserExist};
+export { userExists };
