@@ -11,7 +11,8 @@ class DetailOrderService{
             },
             include:{
                 veicule:true,
-                order: true
+                order: true,
+                
             }
         })
         return orders;

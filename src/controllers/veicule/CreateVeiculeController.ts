@@ -14,6 +14,7 @@ class CreateVeiculeController {
       color,
       city,
       category_id,
+      user_id
     } = req.body;
 
     const createVeiculeService = new CreateVeiculeService();
@@ -35,6 +36,7 @@ class CreateVeiculeController {
           city,
           banner,
           category_id,
+          user_id
         });
         return res.json(veicule)
         

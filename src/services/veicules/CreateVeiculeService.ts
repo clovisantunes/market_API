@@ -12,6 +12,7 @@ interface ProductRequest {
   city: string;
   banner: string;
   category_id: string;
+  user_id: string;
 }
 
 class CreateVeiculeService {
@@ -26,8 +27,9 @@ class CreateVeiculeService {
     color,
     city,
     banner,
-    category_id
-  }) {
+    category_id,
+    user_id
+  }: ProductRequest) {
 
     const veicule = await prismaClient.veicule.create({
         data:{
@@ -41,7 +43,8 @@ class CreateVeiculeService {
             color: color,
             city: city,
             banner: banner,
-            category_id: category_id
+            category_id: category_id,
+            user_id: user_id
         }
     })
     return veicule

@@ -23,7 +23,7 @@ model Users {
   admin      Boolean   @default(false)
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
-
+  veicules   Veicule[]
   orders Order[]
 
   @@map("users")
@@ -55,8 +55,10 @@ model Veicule {
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
 
+  user        Users @relation(fields: [user_id], references: [id])
   category    Category @relation(fields: [category_id], references: [id])
   category_id String
+  user_id     String
   items       Item[]
 
   @@map("veicules")
