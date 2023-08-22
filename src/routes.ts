@@ -11,6 +11,7 @@ import { CreateVeiculeController } from './controllers/veicule/CreateVeiculeCont
 import uploadConfig from './config/multer';
 import { ListByCategoryController } from './controllers/veicule/ListByCategoryController';
 import { CreateOrderController } from './controllers/order/CreateOrderController';
+import { RemoveOrderController } from './controllers/order/RemoveOrderController';
 
 const router = Router();
 
@@ -34,5 +35,5 @@ router.get('/veicule/list', new ListByCategoryController().handle)
 // Routes Order
 
 router.post('/order', isAuthenticated, new CreateOrderController().handle)
-
+router.delete('/order', isAuthenticated, new RemoveOrderController().handle)
 export { router };
