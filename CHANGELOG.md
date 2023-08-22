@@ -38,6 +38,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Created remove order Route
 - Create add item route
 - Create remove item route
+- Create Detail order route
 
 ### Fixed
 
