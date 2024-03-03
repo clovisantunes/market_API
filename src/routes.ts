@@ -39,10 +39,10 @@ router.get('/veicule/list', new ListByCategoryController().handle)
 // Routes Order
 
 router.post('/order', isAuthenticated, new CreateOrderController().handle)
-router.delete('/order', isAuthenticated, new RemoveOrderController().handle)
+router.delete('/order/delete', isAuthenticated, new RemoveOrderController().handle)
 router.post('/order/add', isAuthenticated, new AdditemController().handle)
 router.delete('/order/remove', isAuthenticated, new RemoveItemController().handle)
 router.put('/order/send', isAuthenticated, new SendOrderController().handle)
-router.get('/order', isAuthenticated, new DetailOrderController().handle)
+router.get('/detailOrder', isAuthenticated, new DetailOrderController().handle)
 
 export { router };
